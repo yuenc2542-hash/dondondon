@@ -1,0 +1,304 @@
+<!-- ... existing code ... -->
+    <section id="page-expense" class="hidden space-y-6">
+      
+      <!-- 1. 匯率設定與雙向速算機（莫蘭迪療癒奶茶粉風格） -->
+      <div class="bg-gradient-to-br from-[#FDF6F6] via-white to-[#F9F7FA] rounded-3xl p-5 sm:p-6 shadow-sm border-2 border-dashed border-[#E5D1D0]">
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+          <div>
+            <div class="inline-flex items-center gap-1.5 bg-[#F4E4E4] text-[#B56576] px-3 py-1 rounded-full text-xs font-extrabold mb-1.5">
+              <span>🎀</span> 旅遊小帳本 × 隨手換算機
+            </div>
+            <h2 class="text-lg font-black text-morandi-plum flex items-center gap-2">
+              <span>💱</span> 匯率小幫手 ＆ 記帳總覽
+            </h2>
+            <p class="text-xs text-morandi-sage mt-1 font-medium">支援日圓 / 台幣自動換算，輕鬆區分「自己買買」與「幫親友代購」✨</p>
+          </div>
+          
+          <!-- 基準匯率調整 -->
+          <div class="flex items-center gap-2 bg-white px-4 py-2.5 rounded-2xl border border-[#E6CCB2] shadow-sm">
+            <span class="text-xs font-extrabold text-morandi-cocoa">🌸 今日匯率 1 JPY =</span>
+            <input type="number" id="exchange-rate-input" step="0.0001" value="0.215" oninput="updateExchangeRate(this.value)"
+              class="w-20 text-center text-sm font-black text-[#B56576] bg-[#FDF8F5] border border-[#E6CCB2] rounded-xl py-1 focus:outline-none focus:border-[#D8A48F]" />
+            <span class="text-xs font-extrabold text-morandi-cocoa">TWD</span>
+          </div>
+        </div>
+
+        <!-- 隨手雙向匯率計算機 -->
+        <div class="mt-4 pt-4 border-t border-dashed border-[#E5D1D0] grid grid-cols-1 sm:grid-cols-11 gap-2.5 items-center">
+          <div class="sm:col-span-5 flex items-center bg-white rounded-2xl px-3.5 py-2.5 border border-[#E6CCB2] shadow-sm">
+            <span class="text-xs font-extrabold text-[#B56576] mr-2 whitespace-nowrap">💴 日圓 JPY</span>
+            <input type="number" id="quick-calc-jpy" placeholder="輸入日圓金額..." oninput="quickCalc('jpy')"
+              class="w-full bg-transparent text-sm font-bold text-morandi-ink focus:outline-none text-right" />
+          </div>
+          <div class="sm:col-span-1 text-center text-base">⇄</div>
+          <div class="sm:col-span-5 flex items-center bg-white rounded-2xl px-3.5 py-2.5 border border-[#E6CCB2] shadow-sm">
+            <span class="text-xs font-extrabold text-[#6D597A] mr-2 whitespace-nowrap">💵 台幣 TWD</span>
+            <input type="number" id="quick-calc-twd" placeholder="自動換算台幣..." oninput="quickCalc('twd')"
+              class="w-full bg-transparent text-sm font-bold text-morandi-plum focus:outline-none text-right" />
+          </div>
+        </div>
+      </div>
+
+      <!-- 2. 數據統計儀表板（4張馬卡龍莫蘭迪圓角卡片） -->
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4" id="expense-stats-grid">
+        <!-- 由 JS 動態渲染 -->
+      </div>
+
+      <!-- 3. 新增記帳表單 -->
+      <div class="bg-white rounded-3xl p-5 sm:p-6 shadow-sm border border-[#E6CCB2]">
+        <h3 class="text-base font-black text-morandi-plum mb-4 flex items-center gap-2">
+          <span>✏️</span> 記一筆新花費
+        </h3>
+        <form id="add-expense-form" onsubmit="addExpenseRecord(event)" class="space-y-3.5">
+          <div class="grid grid-cols-1 sm:grid-cols-12 gap-3">
+            <!-- 日期選擇 -->
+            <div class="sm:col-span-3">
+              <label class="block text-xs font-extrabold text-morandi-cocoa mb-1">📅 消費日期</label>
+              <select id="exp-day" class="w-full rounded-2xl border border-[#E6CCB2] bg-[#FDF8F5] px-3 py-2.5 text-sm font-bold text-morandi-cocoa focus:outline-none focus:border-[#D8A48F]">
+                <option value="行前準備">行前準備（機票/票券）</option>
+                <option value="Day 1 (11/27)">Day 1（11/27 五）</option>
+                <option value="Day 2 (11/28)">Day 2（11/28 六）</option>
+                <option value="Day 3 (11/29)">Day 3（11/29 日）</option>
+                <option value="Day 4 (11/30)">Day 4（11/30 一）</option>
+                <option value="Day 5 (12/01)">Day 5（12/01 二）</option>
+                <option value="Day 6 (12/02)">Day 6（12/02 三）</option>
+              </select>
+            </div>
+            <!-- 項目名稱 -->
+            <div class="sm:col-span-5">
+              <label class="block text-xs font-extrabold text-morandi-cocoa mb-1">🛍️ 消費項目</label>
+              <input type="text" id="exp-title" required placeholder="例：淺草 BEAMS 招財貓、不動茶屋..."
+                class="w-full rounded-2xl border border-[#E6CCB2] bg-[#FDF8F5] px-3.5 py-2.5 text-sm font-medium focus:outline-none focus:bg-white focus:border-[#D8A48F]" />
+            </div>
+            <!-- 金額與幣別 -->
+            <div class="sm:col-span-4">
+              <label class="block text-xs font-extrabold text-morandi-cocoa mb-1 flex justify-between">
+                <span>💰 金額</span>
+                <span id="exp-converted-preview" class="text-[#B56576] font-black">≈ NT$ 0</span>
+              </label>
+              <div class="flex rounded-2xl border border-[#E6CCB2] bg-[#FDF8F5] overflow-hidden focus-within:border-[#D8A48F] focus-within:bg-white">
+                <select id="exp-currency" onchange="updateFormPreview()" class="bg-[#F4E4E4] px-2.5 py-2.5 text-xs font-black text-[#B56576] border-r border-[#E6CCB2] focus:outline-none">
+                  <option value="JPY">JPY ¥</option>
+                  <option value="TWD">TWD $</option>
+                </select>
+                <input type="number" id="exp-amount" required min="1" step="any" placeholder="輸入金額" oninput="updateFormPreview()"
+                  class="w-full px-3 py-2.5 text-sm font-bold text-morandi-ink bg-transparent focus:outline-none" />
+              </div>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-12 gap-3 items-end">
+            <!-- 分類 -->
+            <div class="sm:col-span-3">
+              <label class="block text-xs font-extrabold text-morandi-cocoa mb-1">🏷️ 消費分類</label>
+              <select id="exp-category" onchange="autoToggleProxyOwner()" class="w-full rounded-2xl border border-[#E6CCB2] bg-[#FDF8F5] px-3 py-2.5 text-sm font-bold text-morandi-cocoa focus:outline-none focus:border-[#D8A48F]">
+                <option value="美食">🍜 美食甜點</option>
+                <option value="購物">🛍️ 逛街購物</option>
+                <option value="代購">📦 親友代購</option>
+                <option value="交通">🚄 交通車票</option>
+                <option value="門票">🎟️ 景點門票</option>
+                <option value="住宿">🏨 住宿飯店</option>
+                <option value="其他">✨ 其他雜支</option>
+              </select>
+            </div>
+            <!-- 付款方式 -->
+            <div class="sm:col-span-3">
+              <label class="block text-xs font-extrabold text-morandi-cocoa mb-1">💳 付款方式</label>
+              <select id="exp-payment" class="w-full rounded-2xl border border-[#E6CCB2] bg-[#FDF8F5] px-3 py-2.5 text-sm font-bold text-morandi-cocoa focus:outline-none focus:border-[#D8A48F]">
+                <option value="現金">💴 日圓現金</option>
+                <option value="信用卡">💳 信用卡</option>
+                <option value="Suica/IC卡">🐧 Suica / 西瓜卡</option>
+                <option value="PayPay">📱 PayPay / 行動支付</option>
+              </select>
+            </div>
+            <!-- 歸屬對象 -->
+            <div class="sm:col-span-3">
+              <label class="block text-xs font-extrabold text-morandi-cocoa mb-1">🧸 花費歸屬</label>
+              <select id="exp-owner" class="w-full rounded-2xl border border-[#E6CCB2] bg-[#FDF8F5] px-3 py-2.5 text-sm font-bold text-morandi-cocoa focus:outline-none focus:border-[#D8A48F]">
+                <option value="威寶">🐻 威寶</option>
+                <option value="張小寶">🐰 張小寶</option>
+                <option value="共同">💕 共同分攤</option>
+                <option value="代購">📦 代購（待請款）</option>
+              </select>
+            </div>
+            <!-- 送出按鈕 -->
+            <div class="sm:col-span-3">
+              <button type="submit" class="w-full bg-gradient-to-r from-[#D8A48F] to-[#B5838D] hover:opacity-95 text-white font-black text-sm py-2.5 px-4 rounded-2xl shadow-sm transition flex items-center justify-center gap-1.5">
+                <span>➕</span> 加入小帳本
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+
+      <!-- 4. 篩選、匯出與消費明細列表 -->
+      <div class="bg-white rounded-3xl p-5 sm:p-6 shadow-sm border border-[#E6CCB2]">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4">
+          <h3 class="text-base font-black text-morandi-plum flex items-center gap-2">
+            <span>📒</span> 消費明細紀錄
+          </h3>
+          
+          <!-- 匯出與功能按鈕 -->
+          <div class="flex flex-wrap gap-2">
+            <button onclick="copyExpenseReport()" class="text-xs font-extrabold bg-[#F4E4E4] text-[#B56576] hover:bg-[#ebd3d3] px-3.5 py-2 rounded-2xl transition flex items-center gap-1">
+              <span>📋</span> 複製文字報表
+            </button>
+            <button onclick="exportExpenseCSV()" class="text-xs font-extrabold bg-[#E9EDD9] text-[#5B6B48] hover:bg-[#dde4c5] px-3.5 py-2 rounded-2xl transition flex items-center gap-1">
+              <span>📥</span> 匯出 CSV
+            </button>
+            <button onclick="resetSampleExpenses()" class="text-xs font-bold bg-[#F3EFEA] text-morandi-cocoa hover:bg-[#e7e0d8] px-3.5 py-2 rounded-2xl transition">
+              🔄 重設範例
+            </button>
+          </div>
+        </div>
+
+        <!-- 篩選列 -->
+        <div class="flex flex-wrap gap-2 mb-4 pb-3 border-b border-dashed border-[#E6CCB2]" id="expense-filters">
+          <select id="filter-exp-day" onchange="renderExpenseList()" class="text-xs font-extrabold rounded-2xl border border-[#E6CCB2] bg-[#FDF8F5] px-3 py-1.5 text-morandi-cocoa focus:outline-none">
+            <option value="ALL">📅 全部日期</option>
+            <option value="行前準備">行前準備</option>
+            <option value="Day 1 (11/27)">Day 1 (11/27)</option>
+            <option value="Day 2 (11/28)">Day 2 (11/28)</option>
+            <option value="Day 3 (11/29)">Day 3 (11/29)</option>
+            <option value="Day 4 (11/30)">Day 4 (11/30)</option>
+            <option value="Day 5 (12/01)">Day 5 (12/01)</option>
+            <option value="Day 6 (12/02)">Day 6 (12/02)</option>
+          </select>
+          <select id="filter-exp-type" onchange="renderExpenseList()" class="text-xs font-extrabold rounded-2xl border border-[#E6CCB2] bg-[#FDF8F5] px-3 py-1.5 text-morandi-cocoa focus:outline-none">
+            <option value="ALL">🧸 全部類型（含代購）</option>
+            <option value="PERSONAL">💕 僅看個人花費</option>
+            <option value="PROXY">📦 僅看親友代購</option>
+            <option value="CASH">💴 僅看日圓現金</option>
+          </select>
+        </div>
+
+        <!-- 明細列表容器 -->
+        <div id="expense-list-container" class="space-y-2.5">
+          <!-- 由 JS 動態渲染 -->
+        </div>
+      </div>
+
+    </section>
+<!-- ... existing code ... -->
+    function renderExpenseDashboard() {
+      const rateInput = document.getElementById('exchange-rate-input');
+      if (rateInput) rateInput.value = exchangeRate;
+
+      let totalJPY = 0;
+      let proxyJPY = 0;
+      let cashJPY = 0;
+      let cardJPY = 0;
+
+      expenseRecords.forEach(r => {
+        totalJPY += r.amountJPY;
+        if (r.category === '代購' || r.owner === '代購') {
+          proxyJPY += r.amountJPY;
+        }
+        if (r.payment === '現金') {
+          cashJPY += r.amountJPY;
+        } else {
+          cardJPY += r.amountJPY;
+        }
+      });
+
+      const personalJPY = totalJPY - proxyJPY;
+      const statsGrid = document.getElementById('expense-stats-grid');
+      if (statsGrid) {
+        statsGrid.innerHTML = `
+          <div class="bg-[#F9F7FA] rounded-3xl p-4 shadow-sm border border-[#DCD6DD]">
+            <p class="text-[11px] font-extrabold text-[#6D597A] mb-1">💜 總花費（含代購）</p>
+            <p class="text-lg sm:text-xl font-black text-morandi-plum">¥${formatNum(totalJPY)}</p>
+            <p class="text-xs font-bold text-morandi-sage mt-0.5">≈ NT$ ${formatNum(totalJPY * exchangeRate)}</p>
+          </div>
+          <div class="bg-[#F9FBF4] rounded-3xl p-4 shadow-sm border border-[#D8DEC3]">
+            <p class="text-[11px] font-extrabold text-[#5B6B48] mb-1">🌿 個人自用花費</p>
+            <p class="text-lg sm:text-xl font-black text-[#4A583A]">¥${formatNum(personalJPY)}</p>
+            <p class="text-xs font-bold text-[#6B705C] mt-0.5">≈ NT$ ${formatNum(personalJPY * exchangeRate)}</p>
+          </div>
+          <div class="bg-[#FDF6F6] rounded-3xl p-4 shadow-sm border border-[#E5D1D0]">
+            <p class="text-[11px] font-extrabold text-[#B56576] mb-1">🎀 親友代購墊付</p>
+            <p class="text-lg sm:text-xl font-black text-[#B56576]">¥${formatNum(proxyJPY)}</p>
+            <p class="text-xs font-bold text-[#9E5A68] mt-0.5">請款 NT$ ${formatNum(proxyJPY * exchangeRate)}</p>
+          </div>
+          <div class="bg-[#FCF9F5] rounded-3xl p-4 shadow-sm border border-[#E5D8C8]">
+            <p class="text-[11px] font-extrabold text-[#9C6644] mb-1">🍪 現金 vs 刷卡/IC</p>
+            <p class="text-sm font-black text-[#8A5A3C] mt-1">💴 現金 ¥${formatNum(cashJPY)}</p>
+            <p class="text-xs font-bold text-morandi-cocoa mt-0.5">💳 非現金 ¥${formatNum(cardJPY)}</p>
+          </div>
+        `;
+      }
+
+      renderExpenseList();
+    }
+
+    function renderExpenseList() {
+      const container = document.getElementById('expense-list-container');
+      if (!container) return;
+
+      const dayFilter = document.getElementById('filter-exp-day').value;
+      const typeFilter = document.getElementById('filter-exp-type').value;
+
+      const filtered = expenseRecords.filter(r => {
+        const matchDay = dayFilter === 'ALL' || r.day === dayFilter;
+        let matchType = true;
+        const isProxy = r.category === '代購' || r.owner === '代購';
+        if (typeFilter === 'PERSONAL') matchType = !isProxy;
+        if (typeFilter === 'PROXY') matchType = isProxy;
+        if (typeFilter === 'CASH') matchType = r.payment === '現金';
+        return matchDay && matchType;
+      });
+
+      if (filtered.length === 0) {
+        container.innerHTML = `<div class="text-center py-8 text-xs font-bold text-morandi-sage bg-[#FDF8F5] rounded-2xl border border-dashed border-[#E6CCB2]">🧸 這個篩選條件下還沒有記帳紀錄喔！</div>`;
+        return;
+      }
+
+      const catIcons = {
+        '美食': '🍜', '購物': '🛍️', '代購': '📦', '交通': '🚄', '門票': '🎟️', '住宿': '🏨', '其他': '✨'
+      };
+
+      const ownerBadges = {
+        '威寶': '🐻 威寶',
+        '張小寶': '🐰 張小寶',
+        '共同': '💕 共同',
+        '代購': '📦 代購'
+      };
+
+      container.innerHTML = filtered.map(r => {
+        const isProxy = r.category === '代購' || r.owner === '代購';
+        const twd = Math.round(r.amountJPY * exchangeRate);
+        const ownerDisplay = ownerBadges[r.owner] || r.owner;
+        return `
+          <div class="flex items-center justify-between gap-3 p-3.5 rounded-2xl border transition ${isProxy ? 'bg-[#FDF6F6] border-[#E5D1D0]' : 'bg-[#FDF8F5]/70 border-[#E6CCB2] hover:bg-white'}">
+            <div class="flex items-center gap-3 min-w-0">
+              <div class="w-10 h-10 rounded-2xl flex items-center justify-center text-lg shrink-0 shadow-xs ${isProxy ? 'bg-[#F4E4E4]' : 'bg-white border border-[#E6CCB2]'}">
+                ${catIcons[r.category] || '✨'}
+              </div>
+              <div class="min-w-0">
+                <div class="flex items-center gap-1.5 flex-wrap">
+                  <span class="text-sm font-black text-morandi-cocoa truncate">${r.title}</span>
+                  ${isProxy ? '<span class="text-[10px] font-black bg-[#B56576] text-white px-2 py-0.5 rounded-full">代購</span>' : ''}
+                </div>
+                <div class="flex items-center gap-1.5 flex-wrap mt-1 text-[11px] font-bold text-morandi-sage">
+                  <span class="bg-white border border-[#E6CCB2] px-2 py-0.5 rounded-full text-morandi-cocoa">${r.day}</span>
+                  <span>•</span>
+                  <span>${r.payment}</span>
+                  <span>•</span>
+                  <span class="${isProxy ? 'text-[#B56576] font-extrabold' : 'text-morandi-plum'}">${ownerDisplay}</span>
+                </div>
+              </div>
+            </div>
+            <div class="flex items-center gap-3 shrink-0">
+              <div class="text-right">
+                <p class="text-sm sm:text-base font-black text-morandi-plum">¥${formatNum(r.amountJPY)}</p>
+                <p class="text-[11px] font-bold text-morandi-sage">≈ NT$ ${formatNum(twd)}</p>
+              </div>
+              <button onclick="deleteExpenseRecord('${r.id}')" title="刪除" class="w-8 h-8 rounded-full flex items-center justify-center text-morandi-sage hover:text-[#B56576] hover:bg-[#F4E4E4] transition">
+                ✕
+              </button>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+<!-- ... existing code ... -->
