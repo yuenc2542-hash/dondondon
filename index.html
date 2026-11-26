@@ -1,8 +1,370 @@
-<!-- ... existing code ... -->
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>🧸 Don don don 東京 6日自由行手冊</title>
+  <!-- 載入 Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- 載入 Google Fonts: Noto Sans TC & Zen Maru Gothic -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=Zen+Maru+Gothic:wght@500;700;900&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Zen Maru Gothic"', '"Noto Sans TC"', 'sans-serif'],
+          },
+          colors: {
+            morandi: {
+              plum: '#6D597A',
+              rose: '#B56576',
+              dusty: '#B5838D',
+              peach: '#D8A48F',
+              oat: '#E6CCB2',
+              cream: '#FDF8F5',
+              sage: '#6B705C',
+              matcha: '#A5A58D',
+              moss: '#CCD5AE',
+              lavender: '#9A8C98',
+              mist: '#CBD5E1',
+              cocoa: '#5E503F',
+              ink: '#4A4E69'
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body {
+      background-color: #FAF6F3;
+      color: #4A4E69;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+    .tab-active {
+      background: linear-gradient(135deg, #B56576 0%, #6D597A 100%);
+      color: #FFFFFF;
+      box-shadow: 0 4px 12px rgba(181, 101, 118, 0.28);
+    }
+    .day-pill-active {
+      background-color: #6D597A;
+      color: #FFFFFF;
+      border-color: #6D597A;
+      transform: translateY(-1px);
+    }
+    .check-done {
+      text-decoration: line-through;
+      opacity: 0.55;
+    }
+  </style>
+</head>
+<body class="min-h-screen pb-20">
+
+  <!-- 頂部可愛莫蘭迪主視覺 Header -->
+  <header class="bg-gradient-to-br from-[#F4E4E4] via-[#F7EFEA] to-[#EAE6F0] border-b border-[#E6CCB2]/70 pt-6 pb-5 px-4">
+    <div class="max-w-4xl mx-auto">
+      <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
+        <span class="inline-flex items-center gap-1.5 bg-white/85 text-morandi-rose text-xs font-bold px-3 py-1 rounded-full shadow-xs border border-[#E5D1D0]">
+          <span>✈️ 2026/11/27 (五) – 12/02 (三)</span>
+          <span>•</span>
+          <span>成田 NRT T1</span>
+        </span>
+        <span class="text-xs font-bold text-morandi-plum bg-white/80 px-3 py-1 rounded-full border border-[#DCD6DD]">
+          🐻 威寶 ＆ 🐰 張小寶
+        </span>
+      </div>
+      <h1 class="text-2xl sm:text-3xl font-black text-morandi-plum tracking-tight flex items-center gap-2">
+        <span>🧸</span>
+        <span>Don don don 東京 6日自由行手冊</span>
+      </h1>
+      <p class="text-xs sm:text-sm text-morandi-sage mt-1.5 font-medium">
+        JAL工廠見學 × 淺草BEAMS × Kiddy Land × 雙層巴士夜景 × 橫濱聖誕 × 富士山與湘南海岸
+      </p>
+
+      <!-- 行前快捷工具列 -->
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5 mt-4">
+        <a href="https://www.vjw.digital.go.jp/main/#/vjwplo001" target="_blank" rel="noopener"
+           class="flex items-center justify-center gap-2 bg-white hover:bg-[#FDF8F5] text-morandi-cocoa font-bold text-xs sm:text-sm py-2.5 px-3 rounded-2xl shadow-xs border border-[#E6CCB2] transition">
+          <span>💳</span><span>Visit Japan Web</span>
+        </a>
+        <a href="https://maps.app.goo.gl/J7pCYP3DK4EHBV6AA" target="_blank" rel="noopener"
+           class="flex items-center justify-center gap-2 bg-white hover:bg-[#FDF8F5] text-morandi-cocoa font-bold text-xs sm:text-sm py-2.5 px-3 rounded-2xl shadow-xs border border-[#E6CCB2] transition">
+          <span>🗺️</span><span>專屬 Google 地圖</span>
+        </a>
+        <a href="https://japanbusonline.com/zh-tw/Detail/11300980001/0/3131130/3131041/" target="_blank" rel="noopener"
+           class="flex items-center justify-center gap-2 bg-white hover:bg-[#FDF8F5] text-morandi-cocoa font-bold text-xs sm:text-sm py-2.5 px-3 rounded-2xl shadow-xs border border-[#E6CCB2] transition">
+          <span>🚌</span><span>澀谷雙層巴士訂票</span>
+        </a>
+        <button onclick="openTaxModal()"
+           class="flex items-center justify-center gap-2 bg-white hover:bg-[#FDF8F5] text-morandi-rose font-bold text-xs sm:text-sm py-2.5 px-3 rounded-2xl shadow-xs border border-[#E5D1D0] transition">
+          <span>🍹</span><span>退稅最新攻略</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- 主導覽分頁（三大功能區） -->
+  <nav class="sticky top-0 z-30 bg-[#FAF6F3]/95 backdrop-blur-md border-b border-[#E6CCB2]/60 px-4 py-2.5">
+    <div class="max-w-4xl mx-auto grid grid-cols-3 gap-2 bg-white p-1.5 rounded-2xl shadow-xs border border-[#E6CCB2]">
+      <button id="nav-itinerary" onclick="switchMainTab('itinerary')"
+        class="tab-active py-2 px-2 rounded-xl text-xs sm:text-sm font-extrabold transition flex items-center justify-center gap-1.5">
+        <span>📅</span><span>行程與行前</span>
+      </button>
+      <button id="nav-shopping" onclick="switchMainTab('shopping')"
+        class="py-2 px-2 rounded-xl text-xs sm:text-sm font-extrabold text-morandi-cocoa hover:bg-[#FDF8F5] transition flex items-center justify-center gap-1.5">
+        <span>🛍️</span><span>逛街與美食</span>
+      </button>
+      <button id="nav-expense" onclick="switchMainTab('expense')"
+        class="py-2 px-2 rounded-xl text-xs sm:text-sm font-extrabold text-morandi-cocoa hover:bg-[#FDF8F5] transition flex items-center justify-center gap-1.5">
+        <span>💰</span><span>旅遊記帳本</span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- 主內容容器 -->
+  <main class="max-w-4xl mx-auto px-4 pt-5">
+
+    <!-- ========================================== -->
+    <!-- 分頁一：行程與行前資訊                      -->
+    <!-- ========================================== -->
+    <section id="page-itinerary" class="space-y-6">
+
+      <!-- 航班與住宿卡片組 -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <!-- 航班資訊 -->
+        <div class="bg-white rounded-3xl p-5 shadow-xs border border-[#DCD7C9]">
+          <h2 class="text-base font-black text-morandi-plum flex items-center gap-2 mb-3">
+            <span>✈️</span> 樂桃航空 Peach 航班
+          </h2>
+          <div class="space-y-2.5 text-xs sm:text-sm">
+            <div class="bg-[#F9F8F3] p-3 rounded-2xl border border-[#DCD7C9]">
+              <div class="flex items-center justify-between font-extrabold text-morandi-cocoa mb-1">
+                <span>🛫 去程 MM620</span>
+                <span class="text-morandi-rose">11/27 (五)</span>
+              </div>
+              <p class="text-morandi-ink">台北桃園 T1 <b>02:25</b> ➔ 東京成田 T1 <b>06:30</b></p>
+            </div>
+            <div class="bg-[#FDF6F6] p-3 rounded-2xl border border-[#E5D1D0]">
+              <div class="flex items-center justify-between font-extrabold text-morandi-cocoa mb-1">
+                <span>🛬 回程 MM627</span>
+                <span class="text-morandi-rose">12/02 (三)</span>
+              </div>
+              <p class="text-morandi-ink">東京成田 T1 <b>22:05</b> ➔ 台北桃園 T1 <b>01:25 (+1)</b></p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 住宿資訊 -->
+        <div class="bg-white rounded-3xl p-5 shadow-xs border border-[#E5D1D0]">
+          <h2 class="text-base font-black text-morandi-plum flex items-center gap-2 mb-3">
+            <span>🏨</span> 住宿安排（點擊地址可複製）
+          </h2>
+          <div class="space-y-2.5 text-xs">
+            <div class="bg-[#FDF6F6] p-3 rounded-2xl border border-[#E5D1D0]">
+              <div class="flex justify-between items-start gap-2">
+                <span class="font-extrabold text-morandi-cocoa text-sm">Day 1–2｜Office Nakajima</span>
+                <span class="bg-white text-morandi-rose font-bold px-2 py-0.5 rounded-full border border-[#E5D1D0] shrink-0">16:00進 / 10:00退</span>
+              </div>
+              <button onclick="copyText('〒130-0013 東京都墨田区錦糸3-7-3 オフィスナカジマビル')" class="text-left text-morandi-ink hover:text-morandi-rose mt-1 underline decoration-dotted">
+                📍 〒130-0013 東京都墨田区錦糸3-7-3 オフィスナカジマビル 📋
+              </button>
+              <p class="text-morandi-sage mt-0.5">Tel: (+81) 03-4363-1853（11/26 前可取消）</p>
+            </div>
+
+            <div class="bg-[#F9F7FA] p-3 rounded-2xl border border-[#DCD6DD]">
+              <div class="flex justify-between items-start gap-2">
+                <span class="font-extrabold text-morandi-cocoa text-sm">Day 3–5｜秋葉原最佳西方 Fino</span>
+                <span class="bg-white text-morandi-plum font-bold px-2 py-0.5 rounded-full border border-[#DCD6DD] shrink-0">15:00進 / 11:00退</span>
+              </div>
+              <button onclick="copyText('〒110-0005 東京都台東区上野5-1-6 ベストウェスタンホテルフィーノ東京秋葉原')" class="text-left text-morandi-ink hover:text-morandi-plum mt-1 underline decoration-dotted">
+                📍 〒110-0005 東京都台東区上野5-1-6 📋
+              </button>
+              <p class="text-morandi-sage mt-0.5">ベストウェスタンホテルフィーノ東京秋葉原（11/27 前可取消）</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 一週天氣預報看板 -->
+      <div class="bg-white rounded-3xl p-5 shadow-xs border border-[#DCD6DD]">
+        <div class="flex items-center justify-between mb-3">
+          <h2 class="text-base font-black text-morandi-plum flex items-center gap-2">
+            <span>☀️</span> 東京一週天氣預報（11/24 更新）
+          </h2>
+          <span class="text-[11px] font-bold text-morandi-rose bg-[#FDF6F6] px-2.5 py-0.5 rounded-full border border-[#E5D1D0]">
+            週六午前有雨 92% • 週日降溫至 4°C
+          </span>
+        </div>
+        <div class="grid grid-cols-3 sm:grid-cols-6 gap-2 text-center text-xs">
+          <div class="bg-[#F9F7FA] p-2.5 rounded-2xl border border-[#DCD6DD]">
+            <p class="font-extrabold text-morandi-cocoa">11/27 五</p>
+            <p class="text-lg my-1">☀️</p>
+            <p class="font-bold text-morandi-ink">9° ~ 18°</p>
+            <p class="text-[10px] text-morandi-sage">晴朗 5%</p>
+          </div>
+          <div class="bg-[#FDF6F6] p-2.5 rounded-2xl border-2 border-[#D8A48F]">
+            <p class="font-extrabold text-morandi-rose">11/28 六</p>
+            <p class="text-lg my-1">🌧️</p>
+            <p class="font-bold text-morandi-ink">10° ~ 16°</p>
+            <p class="text-[10px] font-extrabold text-morandi-rose">午前雨 92%</p>
+          </div>
+          <div class="bg-[#F8FAFC] p-2.5 rounded-2xl border border-[#CBD5E1]">
+            <p class="font-extrabold text-morandi-cocoa">11/29 日</p>
+            <p class="text-lg my-1">🌤️</p>
+            <p class="font-bold text-[#526D82]">4° ~ 14°</p>
+            <p class="text-[10px] text-morandi-sage">風大 22km/h</p>
+          </div>
+          <div class="bg-[#F9F7FA] p-2.5 rounded-2xl border border-[#DCD6DD]">
+            <p class="font-extrabold text-morandi-cocoa">11/30 一</p>
+            <p class="text-lg my-1">☀️</p>
+            <p class="font-bold text-morandi-ink">5° ~ 15°</p>
+            <p class="text-[10px] text-morandi-sage">晴朗 1%</p>
+          </div>
+          <div class="bg-[#F9F7FA] p-2.5 rounded-2xl border border-[#DCD6DD]">
+            <p class="font-extrabold text-morandi-cocoa">12/01 二</p>
+            <p class="text-lg my-1">☀️</p>
+            <p class="font-bold text-morandi-ink">7° ~ 18°</p>
+            <p class="text-[10px] text-morandi-sage">晴朗 3%</p>
+          </div>
+          <div class="bg-[#F9F7FA] p-2.5 rounded-2xl border border-[#DCD6DD]">
+            <p class="font-extrabold text-morandi-cocoa">12/02 三</p>
+            <p class="text-lg my-1">☀️</p>
+            <p class="font-bold text-morandi-ink">8° ~ 18°</p>
+            <p class="text-[10px] text-morandi-sage">晴朗 3%</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 每日行程選擇器 -->
+      <div class="space-y-3">
+        <div class="flex items-center justify-between">
+          <h2 class="text-lg font-black text-morandi-plum flex items-center gap-2">
+            <span>📍</span> 每日詳細行程（可點擊勾選完成）
+          </h2>
+          <button onclick="selectDay('ALL')" id="btn-day-ALL"
+            class="text-xs font-extrabold px-3 py-1.5 rounded-full border border-[#DCD6DD] bg-white text-morandi-plum hover:bg-[#F9F7FA] transition">
+            展開全部 6 天
+          </button>
+        </div>
+
+        <!-- 橫向滑動天數膠囊列 -->
+        <div class="flex gap-2 overflow-x-auto no-scrollbar pb-1" id="day-selector-bar">
+          <button onclick="selectDay('1')" id="btn-day-1" class="day-pill-active shrink-0 px-4 py-2 rounded-2xl border border-[#E6CCB2] bg-white text-xs font-extrabold transition">🌸 Day 1 (11/27)</button>
+          <button onclick="selectDay('2')" id="btn-day-2" class="shrink-0 px-4 py-2 rounded-2xl border border-[#E6CCB2] bg-white text-xs font-extrabold text-morandi-cocoa transition">✨ Day 2 (11/28)</button>
+          <button onclick="selectDay('3')" id="btn-day-3" class="shrink-0 px-4 py-2 rounded-2xl border border-[#E6CCB2] bg-white text-xs font-extrabold text-morandi-cocoa transition">🍁 Day 3 (11/29)</button>
+          <button onclick="selectDay('4')" id="btn-day-4" class="shrink-0 px-4 py-2 rounded-2xl border border-[#E6CCB2] bg-white text-xs font-extrabold text-morandi-cocoa transition">🌊 Day 4 (11/30)</button>
+          <button onclick="selectDay('5')" id="btn-day-5" class="shrink-0 px-4 py-2 rounded-2xl border border-[#E6CCB2] bg-white text-xs font-extrabold text-morandi-cocoa transition">🗻 Day 5 (12/01)</button>
+          <button onclick="selectDay('6')" id="btn-day-6" class="shrink-0 px-4 py-2 rounded-2xl border border-[#E6CCB2] bg-white text-xs font-extrabold text-morandi-cocoa transition">🍂 Day 6 (12/02)</button>
+        </div>
+
+        <!-- 行程卡片動態渲染容器 -->
+        <div id="itinerary-cards-container" class="space-y-4"></div>
+      </div>
+
+      <!-- 期間限定特別活動總表 -->
+      <div class="bg-white rounded-3xl p-5 shadow-xs border border-[#E5D1D0]">
+        <h2 class="text-base font-black text-morandi-rose flex items-center gap-2 mb-3">
+          <span>🎄</span> 期間限定特別活動 ＆ 推薦景點備忘
+        </h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs" id="events-container"></div>
+      </div>
+
+    </section>
+
+    <!-- ========================================== -->
+    <!-- 分頁二：逛街、伴手禮、代購與美食清單         -->
+    <!-- ========================================== -->
+    <section id="page-shopping" class="hidden space-y-6">
+
+      <!-- 1. 代購清單互動區 -->
+      <div class="bg-gradient-to-br from-[#FDF6F6] to-white rounded-3xl p-5 shadow-xs border-2 border-dashed border-[#E5D1D0]">
+        <div class="flex items-center justify-between mb-3">
+          <div>
+            <h2 class="text-base font-black text-morandi-rose flex items-center gap-2">
+              <span>📦</span> 親友代購清單（可隨時新增與勾選）
+            </h2>
+            <p class="text-xs text-morandi-sage mt-0.5">輸入品項與委託人，買到後打勾自動存入本機紀錄</p>
+          </div>
+        </div>
+        <form onsubmit="addProxyItem(event)" class="flex flex-col sm:flex-row gap-2 mb-3">
+          <input type="text" id="proxy-item-input" required placeholder="例：合利他命 EX Plus 270錠（媽媽）..."
+            class="flex-1 rounded-2xl border border-[#E6CCB2] bg-white px-3.5 py-2 text-sm focus:outline-none focus:border-morandi-rose" />
+          <button type="submit" class="bg-morandi-rose hover:opacity-90 text-white font-extrabold text-xs sm:text-sm px-4 py-2 rounded-2xl transition shrink-0">
+            ➕ 新增代購
+          </button>
+        </form>
+        <div id="proxy-list-container" class="space-y-2"></div>
+      </div>
+
+      <!-- 2. 15大必吃美食願望清單 ＆ 指定甜點店 -->
+      <div class="bg-white rounded-3xl p-5 shadow-xs border border-[#DCD7C9]">
+        <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
+          <h2 class="text-base font-black text-morandi-plum flex items-center gap-2">
+            <span>🍱</span> 15 大必吃美食願望清單（點選集章）
+          </h2>
+          <a href="http://s.klook.com/c/ayRz_V58yB" target="_blank" rel="noopener"
+             class="text-xs font-bold text-morandi-rose bg-[#FDF6F6] px-3 py-1 rounded-full border border-[#E5D1D0]">
+            🔗 Klook 美食參考
+          </a>
+        </div>
+        <div id="food-wish-grid" class="flex flex-wrap gap-2 mb-5"></div>
+
+        <!-- 🍰 甜甜指定甜點店 -->
+        <div class="pt-4 border-t border-dashed border-[#E6CCB2]">
+          <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
+            <h3 class="text-sm font-black text-morandi-rose flex items-center gap-1.5">
+              <span>🍰</span> 甜甜（指定甜點店與地圖）
+            </h3>
+            <a href="http://www.kkday.com/zh-tw/blog/214912/asia-japan-tokyo-desserts?srsltid=AYCX9vJSL5i0ZM1rnRnYk6JsBUHBjMkYtq5D2EWuXrWTaXQPJbttd0if&ccy=TWD&is_trans_source=0" target="_blank" rel="noopener"
+               class="text-xs font-bold text-morandi-plum bg-[#F9F7FA] px-3 py-1 rounded-full border border-[#DCD6DD]">
+              🔗 KKday 甜點攻略
+            </a>
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5 text-xs">
+            <a href="https://share.google/WDlykZrv6KgMDn9GM" target="_blank" rel="noopener"
+               class="bg-[#FDF8F5] hover:bg-[#F4E4E4]/50 p-3 rounded-2xl border border-[#E6CCB2] transition block">
+              <p class="font-black text-morandi-cocoa">🍰 千層蛋糕</p>
+              <p class="font-bold text-morandi-rose mt-0.5">HARBS LUMINE EST 新宿店</p>
+              <p class="text-[11px] text-morandi-sage mt-1">點擊開啟地標 ↗</p>
+            </a>
+            <a href="https://maps.app.goo.gl/XJuvD2axWEYfuMxcA?g_st=ic" target="_blank" rel="noopener"
+               class="bg-[#FDF8F5] hover:bg-[#F4E4E4]/50 p-3 rounded-2xl border border-[#E6CCB2] transition block">
+              <p class="font-black text-morandi-cocoa">🍓 水果塔</p>
+              <p class="font-bold text-morandi-rose mt-0.5">指定水果塔 Google 地標</p>
+              <p class="text-[11px] text-morandi-sage mt-1">點擊開啟地標 ↗</p>
+            </a>
+            <a href="https://share.google/FKoHCrMxzKbVrFt1F" target="_blank" rel="noopener"
+               class="bg-[#FDF8F5] hover:bg-[#F4E4E4]/50 p-3 rounded-2xl border border-[#E6CCB2] transition block">
+              <p class="font-black text-morandi-cocoa">🌯 原宿可麗餅</p>
+              <p class="font-bold text-morandi-rose mt-0.5">SWEET BOX 竹下通店</p>
+              <p class="text-[11px] text-morandi-sage mt-1">點擊開啟地標 ↗</p>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3. 分區逛街與推薦美食 -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4" id="area-guides-container"></div>
+
+    </section>
+
+    <!-- ========================================== -->
+    <!-- 分頁三：旅遊記帳本（可愛莫蘭迪手帳風格）       -->
+    <!-- ========================================== -->
     <section id="page-expense" class="hidden space-y-6">
       
-      <!-- 1. 匯率設定與雙向速算機（莫蘭迪療癒奶茶粉風格） -->
-      <div class="bg-gradient-to-br from-[#FDF6F6] via-white to-[#F9F7FA] rounded-3xl p-5 sm:p-6 shadow-sm border-2 border-dashed border-[#E5D1D0]">
+      <!-- 1. 匯率設定與雙向速算機 -->
+      <div class="bg-gradient-to-br from-[#FDF6F6] via-white to-[#F9F7FA] rounded-3xl p-5 sm:p-6 shadow-xs border-2 border-dashed border-[#E5D1D0]">
         <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
           <div>
             <div class="inline-flex items-center gap-1.5 bg-[#F4E4E4] text-[#B56576] px-3 py-1 rounded-full text-xs font-extrabold mb-1.5">
@@ -15,7 +377,7 @@
           </div>
           
           <!-- 基準匯率調整 -->
-          <div class="flex items-center gap-2 bg-white px-4 py-2.5 rounded-2xl border border-[#E6CCB2] shadow-sm">
+          <div class="flex items-center gap-2 bg-white px-4 py-2.5 rounded-2xl border border-[#E6CCB2] shadow-xs">
             <span class="text-xs font-extrabold text-morandi-cocoa">🌸 今日匯率 1 JPY =</span>
             <input type="number" id="exchange-rate-input" step="0.0001" value="0.215" oninput="updateExchangeRate(this.value)"
               class="w-20 text-center text-sm font-black text-[#B56576] bg-[#FDF8F5] border border-[#E6CCB2] rounded-xl py-1 focus:outline-none focus:border-[#D8A48F]" />
@@ -25,13 +387,13 @@
 
         <!-- 隨手雙向匯率計算機 -->
         <div class="mt-4 pt-4 border-t border-dashed border-[#E5D1D0] grid grid-cols-1 sm:grid-cols-11 gap-2.5 items-center">
-          <div class="sm:col-span-5 flex items-center bg-white rounded-2xl px-3.5 py-2.5 border border-[#E6CCB2] shadow-sm">
+          <div class="sm:col-span-5 flex items-center bg-white rounded-2xl px-3.5 py-2.5 border border-[#E6CCB2] shadow-xs">
             <span class="text-xs font-extrabold text-[#B56576] mr-2 whitespace-nowrap">💴 日圓 JPY</span>
             <input type="number" id="quick-calc-jpy" placeholder="輸入日圓金額..." oninput="quickCalc('jpy')"
               class="w-full bg-transparent text-sm font-bold text-morandi-ink focus:outline-none text-right" />
           </div>
           <div class="sm:col-span-1 text-center text-base">⇄</div>
-          <div class="sm:col-span-5 flex items-center bg-white rounded-2xl px-3.5 py-2.5 border border-[#E6CCB2] shadow-sm">
+          <div class="sm:col-span-5 flex items-center bg-white rounded-2xl px-3.5 py-2.5 border border-[#E6CCB2] shadow-xs">
             <span class="text-xs font-extrabold text-[#6D597A] mr-2 whitespace-nowrap">💵 台幣 TWD</span>
             <input type="number" id="quick-calc-twd" placeholder="自動換算台幣..." oninput="quickCalc('twd')"
               class="w-full bg-transparent text-sm font-bold text-morandi-plum focus:outline-none text-right" />
@@ -40,18 +402,15 @@
       </div>
 
       <!-- 2. 數據統計儀表板（4張馬卡龍莫蘭迪圓角卡片） -->
-      <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4" id="expense-stats-grid">
-        <!-- 由 JS 動態渲染 -->
-      </div>
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4" id="expense-stats-grid"></div>
 
       <!-- 3. 新增記帳表單 -->
-      <div class="bg-white rounded-3xl p-5 sm:p-6 shadow-sm border border-[#E6CCB2]">
+      <div class="bg-white rounded-3xl p-5 sm:p-6 shadow-xs border border-[#E6CCB2]">
         <h3 class="text-base font-black text-morandi-plum mb-4 flex items-center gap-2">
           <span>✏️</span> 記一筆新花費
         </h3>
         <form id="add-expense-form" onsubmit="addExpenseRecord(event)" class="space-y-3.5">
           <div class="grid grid-cols-1 sm:grid-cols-12 gap-3">
-            <!-- 日期選擇 -->
             <div class="sm:col-span-3">
               <label class="block text-xs font-extrabold text-morandi-cocoa mb-1">📅 消費日期</label>
               <select id="exp-day" class="w-full rounded-2xl border border-[#E6CCB2] bg-[#FDF8F5] px-3 py-2.5 text-sm font-bold text-morandi-cocoa focus:outline-none focus:border-[#D8A48F]">
@@ -64,13 +423,11 @@
                 <option value="Day 6 (12/02)">Day 6（12/02 三）</option>
               </select>
             </div>
-            <!-- 項目名稱 -->
             <div class="sm:col-span-5">
               <label class="block text-xs font-extrabold text-morandi-cocoa mb-1">🛍️ 消費項目</label>
               <input type="text" id="exp-title" required placeholder="例：淺草 BEAMS 招財貓、不動茶屋..."
                 class="w-full rounded-2xl border border-[#E6CCB2] bg-[#FDF8F5] px-3.5 py-2.5 text-sm font-medium focus:outline-none focus:bg-white focus:border-[#D8A48F]" />
             </div>
-            <!-- 金額與幣別 -->
             <div class="sm:col-span-4">
               <label class="block text-xs font-extrabold text-morandi-cocoa mb-1 flex justify-between">
                 <span>💰 金額</span>
@@ -88,7 +445,6 @@
           </div>
 
           <div class="grid grid-cols-1 sm:grid-cols-12 gap-3 items-end">
-            <!-- 分類 -->
             <div class="sm:col-span-3">
               <label class="block text-xs font-extrabold text-morandi-cocoa mb-1">🏷️ 消費分類</label>
               <select id="exp-category" onchange="autoToggleProxyOwner()" class="w-full rounded-2xl border border-[#E6CCB2] bg-[#FDF8F5] px-3 py-2.5 text-sm font-bold text-morandi-cocoa focus:outline-none focus:border-[#D8A48F]">
@@ -101,7 +457,6 @@
                 <option value="其他">✨ 其他雜支</option>
               </select>
             </div>
-            <!-- 付款方式 -->
             <div class="sm:col-span-3">
               <label class="block text-xs font-extrabold text-morandi-cocoa mb-1">💳 付款方式</label>
               <select id="exp-payment" class="w-full rounded-2xl border border-[#E6CCB2] bg-[#FDF8F5] px-3 py-2.5 text-sm font-bold text-morandi-cocoa focus:outline-none focus:border-[#D8A48F]">
@@ -111,7 +466,6 @@
                 <option value="PayPay">📱 PayPay / 行動支付</option>
               </select>
             </div>
-            <!-- 歸屬對象 -->
             <div class="sm:col-span-3">
               <label class="block text-xs font-extrabold text-morandi-cocoa mb-1">🧸 花費歸屬</label>
               <select id="exp-owner" class="w-full rounded-2xl border border-[#E6CCB2] bg-[#FDF8F5] px-3 py-2.5 text-sm font-bold text-morandi-cocoa focus:outline-none focus:border-[#D8A48F]">
@@ -121,9 +475,8 @@
                 <option value="代購">📦 代購（待請款）</option>
               </select>
             </div>
-            <!-- 送出按鈕 -->
             <div class="sm:col-span-3">
-              <button type="submit" class="w-full bg-gradient-to-r from-[#D8A48F] to-[#B5838D] hover:opacity-95 text-white font-black text-sm py-2.5 px-4 rounded-2xl shadow-sm transition flex items-center justify-center gap-1.5">
+              <button type="submit" class="w-full bg-gradient-to-r from-[#D8A48F] to-[#B5838D] hover:opacity-95 text-white font-black text-sm py-2.5 px-4 rounded-2xl shadow-xs transition flex items-center justify-center gap-1.5">
                 <span>➕</span> 加入小帳本
               </button>
             </div>
@@ -132,13 +485,11 @@
       </div>
 
       <!-- 4. 篩選、匯出與消費明細列表 -->
-      <div class="bg-white rounded-3xl p-5 sm:p-6 shadow-sm border border-[#E6CCB2]">
+      <div class="bg-white rounded-3xl p-5 sm:p-6 shadow-xs border border-[#E6CCB2]">
         <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4">
           <h3 class="text-base font-black text-morandi-plum flex items-center gap-2">
             <span>📒</span> 消費明細紀錄
           </h3>
-          
-          <!-- 匯出與功能按鈕 -->
           <div class="flex flex-wrap gap-2">
             <button onclick="copyExpenseReport()" class="text-xs font-extrabold bg-[#F4E4E4] text-[#B56576] hover:bg-[#ebd3d3] px-3.5 py-2 rounded-2xl transition flex items-center gap-1">
               <span>📋</span> 複製文字報表
@@ -152,8 +503,7 @@
           </div>
         </div>
 
-        <!-- 篩選列 -->
-        <div class="flex flex-wrap gap-2 mb-4 pb-3 border-b border-dashed border-[#E6CCB2]" id="expense-filters">
+        <div class="flex flex-wrap gap-2 mb-4 pb-3 border-b border-dashed border-[#E6CCB2]">
           <select id="filter-exp-day" onchange="renderExpenseList()" class="text-xs font-extrabold rounded-2xl border border-[#E6CCB2] bg-[#FDF8F5] px-3 py-1.5 text-morandi-cocoa focus:outline-none">
             <option value="ALL">📅 全部日期</option>
             <option value="行前準備">行前準備</option>
@@ -172,14 +522,504 @@
           </select>
         </div>
 
-        <!-- 明細列表容器 -->
-        <div id="expense-list-container" class="space-y-2.5">
-          <!-- 由 JS 動態渲染 -->
-        </div>
+        <div id="expense-list-container" class="space-y-2.5"></div>
       </div>
 
     </section>
-<!-- ... existing code ... -->
+
+  </main>
+
+  <!-- 退稅攻略彈窗 Modal -->
+  <div id="tax-modal" class="fixed inset-0 z-50 hidden bg-black/40 backdrop-blur-xs flex items-center justify-center p-4">
+    <div class="bg-white rounded-3xl max-w-md w-full p-6 shadow-xl border border-[#E5D1D0]">
+      <div class="flex items-center justify-between mb-3">
+        <h3 class="text-lg font-black text-morandi-plum">🍹 日本退稅攻略參考</h3>
+        <button onclick="closeTaxModal()" class="w-8 h-8 rounded-full bg-[#FDF6F6] text-morandi-rose font-bold">✕</button>
+      </div>
+      <p class="text-xs text-morandi-sage mb-4">點擊下方連結查看最新退稅規定與免稅流程解析：</p>
+      <div class="space-y-2.5 text-sm">
+        <a href="https://www.threads.com/@qinxu9702/post/Df3-JGBE1eA?xmt=AQG0yXPthcn5_ocxd6dB26T-jGYanvhwXsA_JSv6Y38-RT_bQWIZKMt-VAHCHt6ujjHBGsNzVg&slof=1" target="_blank" rel="noopener"
+           class="block p-3.5 rounded-2xl bg-[#FDF8F5] hover:bg-[#F4E4E4]/50 border border-[#E6CCB2] font-bold text-morandi-cocoa">
+          📱 日本退稅攻略參考（Threads 貼文） ↗
+        </a>
+        <a href="https://japan.videoland.com.tw/jp_travel-article.php?id=3399" target="_blank" rel="noopener"
+           class="block p-3.5 rounded-2xl bg-[#F9F7FA] hover:bg-[#EAE6F0] border border-[#DCD6DD] font-bold text-morandi-plum">
+          📺 日本退稅最新規定解析（緯來日本台） ↗
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast 提示訊息框（取代 alert） -->
+  <div id="toast-box" class="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 hidden bg-morandi-plum text-white text-xs font-bold px-4 py-2.5 rounded-full shadow-lg">
+    已複製到剪貼簿！
+  </div>
+
+  <script>
+    // ==============================
+    // 1. 行程與活動資料
+    // ==============================
+    const itineraryData = [
+      {
+        day: '1',
+        date: '11/27（五）',
+        title: '成田抵達、淺草 BEAMS、晴空塔、JAL 工廠見學 ＆ 上野秋葉原',
+        badgeBg: 'bg-[#E5C1BD]',
+        badgeText: 'text-[#4A3F35]',
+        tip: '晴空塔 13:30 前需離開前往羽田「新整備場站」參加 JAL 工廠見學（14:45–16:55，需提早 15–20 分鐘報到，紀念品須於進廠區前購買）！',
+        steps: [
+          { id: 'd1-1', time: '06:30 – 09:20', text: '抵達成田 T1 ➔ Skyliner（07:23→08:29 京成上野 ¥2,567 / 08:12→09:16）或 N\'EX（07:37→08:52 東京站 ¥3,138 / 08:15→09:20）' },
+          { id: 'd1-2', time: '上午', text: '淺草寺參拜 ＆ 必逛「淺草寺 BEAMS JAPAN 限定店」' },
+          { id: 'd1-3', time: '中午 – 13:30', text: '晴空塔（三麗鷗 × 葛飾北齋聯名活動＋午餐），13:30 準時離開（都營淺草線押上→大門轉單軌電車至新整備場，約 1 小時 ¥739）' },
+          { id: 'd1-4', time: '14:45 – 16:55', text: '羽田機場 JAL 航空工廠見學（提早 15–20 分鐘報到，紀念品進廠前先買）' },
+          { id: 'd1-5', time: '晚上 ～ 凌晨', text: '上野、秋葉原逛街轉扭蛋 ➔ 錦糸町小窩入住 2 晚（🌙 張小寶凌晨還要衝唐吉訶德！）' }
+        ]
+      },
+      {
+        day: '2',
+        date: '11/28（六）',
+        title: '明治神宮、新宿、表參道 Kiddy Land、澀谷雙層巴士＋SHIBUYA SKY ＆ 六本木點燈',
+        badgeBg: 'bg-[#E6CCB2]',
+        badgeText: 'text-[#4A3F35]',
+        tip: '今日午前有雨（92%）記得帶傘！六本木 17:00 準時點燈，16:45 可先卡位；結束後可順遊濱松町站東京鐵塔拍攝點。',
+        steps: [
+          { id: 'd2-1', time: '08:00 – 09:00', text: '明治神宮（趁早人少參拜）' },
+          { id: 'd2-2', time: '上午 ～ 下午', text: '新宿逛街 ➔ 表參道（必逛 Kiddy Land 原宿店）➔ 澀谷逛街' },
+          { id: 'd2-3', time: '16:45 – 17:45', text: '搭乘澀谷 FUKURAS 雙層觀光巴士（¥2,000～）' },
+          { id: 'd2-4', time: '19:30 入場', text: '登上 SHIBUYA SKY 俯瞰澀谷高空夜景' },
+          { id: 'd2-5', time: '晚上', text: '六本木蔦屋書店／櫸木坂通看燈海＋東京鐵塔（17:00–22:00 點燈；聖誕市集 11:00–21:00）➔ 可順遊濱松町站拍攝點 ➔ 回錦糸町小窩' }
+        ]
+      },
+      {
+        day: '3',
+        date: '11/29（日）',
+        title: '換飯店、東大銀杏、皇居、日本橋寶可夢 DX、銀座步行者天國 ＆ 橫濱聖誕市集',
+        badgeBg: 'bg-[#D8D3E3]',
+        badgeText: 'text-[#3D354B]',
+        tip: '今日降溫至 4°C～14°C 且風速較強，注意保暖！東京站周邊 16:00 起有「丸之內香檳金燈飾」。',
+        steps: [
+          { id: 'd3-1', time: '10:00', text: '錦糸町退房 ➔ 前往「東京秋葉原最佳西方 Fino 飯店」寄放行李' },
+          { id: 'd3-2', time: '上午', text: '東京大學（看金黃銀杏）➔ 皇居外苑（乾通秋季一般公開 09:00–15:00）／東京車站散步' },
+          { id: 'd3-3', time: '中午 ～ 下午', text: '日本橋寶可夢東京店 DX ➔ 銀座步行者天國（週日封街：三麗鷗銀座店 / GU / UNIQLO / 無印良品＋午餐下午茶）' },
+          { id: 'd3-4', time: '傍晚 ～ 晚上', text: '前往橫濱（收集寶可夢＋橫濱紅磚倉庫聖誕市集）➔ 回程可視情況順遊「惠比壽花園廣場冬季點燈（16:00–23:00，38樓夜景）」➔ 回秋葉原飯店入住' }
+        ]
+      },
+      {
+        day: '4',
+        date: '11/30（一）',
+        title: '鎌倉高校前（櫻木花道平交道）、鎌倉大佛、鶴岡八幡宮、小町通、七里濱 ＆ 江之島',
+        badgeBg: 'bg-[#CCD5AE]',
+        badgeText: 'text-[#3A442D]',
+        tip: '11/30 與 12/01 皆為大晴天（降雨率 1%–3%），可依富士山能見度彈性與 Day 5 對調！',
+        steps: [
+          { id: 'd4-1', time: '上午', text: '搭乘 JR 橫須賀線 ➔ 轉江之電至「鎌倉高校前（櫻木花道平交道）」拍照' },
+          { id: 'd4-2', time: '中午', text: '參觀鎌倉大佛 ➔ 鶴岡八幡宮 ➔ 小町通逛街與午餐' },
+          { id: 'd4-3', time: '下午 ～ 傍晚', text: '七里濱海景散步／咖啡廳 ➔ 江之島欣賞夕陽後返回東京市區' }
+        ]
+      },
+      {
+        day: '5',
+        date: '12/01（二）',
+        title: '富士山絕景一日遊：特急富士回遊、忍野八海、日川時計店、大石公園 ＆ 河口湖 Lawson',
+        badgeBg: 'bg-[#CBD5E1]',
+        badgeText: 'text-[#334155]',
+        tip: '搭乘 JR 特急「富士回遊」1–3 號車廂直達河口湖站，晚上回新宿剛好吃燒肉！',
+        steps: [
+          { id: 'd5-1', time: '06:55 – 07:13', text: 'JR 秋葉原站搭中央・總武線出發 ➔ 抵達新宿站' },
+          { id: 'd5-2', time: '07:30 – 09:24', text: '搭乘「JR 特急富士回遊 3 號」（1–3 車廂）抵達河口湖站' },
+          { id: 'd5-3', time: '09:40 – 11:00', text: '搭巴士前往「忍野八海」拍照 ＋ 吃現烤草餅點心' },
+          { id: 'd5-4', time: '11:15 – 12:30', text: '前往下吉田「日川時計店」（時計街）拍天梯小鎮街景與富士山' },
+          { id: 'd5-5', time: '12:50 – 14:00', text: '返回河口湖站，正對面「不動茶屋」吃熱騰騰南瓜餺飥麵' },
+          { id: 'd5-6', time: '14:15 – 16:00', text: '搭紅線周遊巴士前往「大石公園」散步、拍湖景富士山、吃巨峰葡萄霜淇淋（或去 Lake Bake 喝咖啡）' },
+          { id: 'd5-7', time: '16:15 – 17:15', text: '返回河口湖站周邊，拍 Lawson 富士山、買「富士山吐司 ＆ FUJIYAMA COOKIE」' },
+          { id: 'd5-8', time: '17:38 – 19:35', text: '搭乘回程「富士回遊 48 號」返回新宿（晚上在新宿吃燒肉或逛街，再回秋葉原飯店）' }
+        ]
+      },
+      {
+        day: '6',
+        date: '12/02（三）',
+        title: '新宿、上野、秋葉原阿美橫丁最後採買 ＆ N\'EX 赴成田機場返台',
+        badgeBg: 'bg-[#EDDCD2]',
+        badgeText: 'text-[#4A3F35]',
+        tip: '11:00 退房寄放行李，回程班機 MM627 為 22:05 起飛，建議 19:30 前抵達成田第 1 航廈！',
+        steps: [
+          { id: 'd6-1', time: '11:00', text: '上野／秋葉原飯店退房並寄放行李' },
+          { id: 'd6-2', time: '白天 ～ 下午', text: '新宿、上野、秋葉原、阿美橫丁最後伴手禮與藥妝補貨' },
+          { id: 'd6-3', time: '傍晚 ～ 22:05', text: '領取行李後前往新宿站 ➔ 搭乘 N\'EX 成田特快前往成田機場 T1 ➔ 搭乘 MM627（22:05 起飛）返回台北' }
+        ]
+      }
+    ];
+
+    const specialEvents = [
+      { name: '✨ 丸之內香檳金色燈飾', date: '11/12 起 • 16:00–23:00', desc: '丸之內仲通與東京站周邊（全長1.2公里），免費參觀，東京站丸之內南口步行1分鐘。', link: '' },
+      { name: '🎀 三麗鷗 × 晴空塔聯名', date: '期間限定活動', desc: '東京晴空塔 × 三麗鷗 × 葛飾北齋特別聯名活動（排入 Day 1）。', link: 'https://www.tokyo-skytree.jp/event/special/sanrio/hokusai/' },
+      { name: '🍁 皇居乾通秋季一般公開', date: '11/28–12/06 • 09:00–15:00', desc: '免預約且免費參觀皇家紅葉通道（排入 Day 3 上午）。', link: '' },
+      { name: '🏮 風雅華麗的江戶祭 2026', date: '11/28 (六) • 11:00–16:00', desc: '淺草壱福小路｜落語、藝妓舞蹈、和樂器演奏、金箔剪紙；贈仙貝與甜酒（10:45發號碼牌）。', link: '' },
+      { name: '🍁 八芳園紅葉點燈', date: '11/27–12/06 • 日落–21:00', desc: 'TOKYO RED GARDEN 2026，東京八芳園夜間紅葉點燈，免費入場。', link: '' },
+      { name: '✨ 惠比壽花園廣場冬季點燈', date: '至 2027/02 • 16:00–23:00', desc: '巴卡拉水晶吊燈與香檳金燈飾，可上 38 樓免費看夜景（Day 3 回程備選）。', link: '' },
+      { name: '🎄 表參道燈飾', date: '12/01–12/27 • 日落–22:00', desc: '全長約 1 公里櫸樹大道香檳金燈光（神宮前交差點至表參道交差點）。', link: '' },
+      { name: '📸 濱松町站東京鐵塔拍攝點', date: 'Day 2 六本木後順遊', desc: '超強東京鐵塔街景拍攝位置，點擊查看地圖定位。', link: 'https://maps.app.goo.gl/qUx95qz8jAEyedpf7' },
+      { name: '☕ 慧君推薦的星巴克', date: '備選特色景點', desc: '中目黑星巴克臻選東京烘焙工坊 / 特色門市介紹。', link: 'https://tokyo.letsgojp.com/archives/366564/' },
+      { name: '🌃 庭園紅葉夜間特別觀賞', date: '11/25–12/06 • 18:00–20:30', desc: '最後入園 19:30，預售票 ¥1,000 / 當日票 ¥1,200（小學生以下免費）。', link: 'https://www.tokyo-park.or.jp/' }
+    ];
+
+    const foodWishes = [
+      '燒肉', '壽喜燒', '拉麵', '丼飯', '豬排飯',
+      '咖哩', '鰻魚飯', '壽司', '漢堡排', '便利商店',
+      '文字燒', '蕎麥麵', '天婦羅', '炸牛排', '薩利亞'
+    ];
+
+    const areaGuides = [
+      {
+        title: 'Day 1｜淺草・晴空塔・羽田・上野秋葉原',
+        color: 'border-[#E5D1D0]',
+        shop: [
+          '淺草寺 BEAMS JAPAN 限定店（必看限定招財貓）',
+          '晴空塔 Solamachi（三麗鷗聯名展區、寶可夢中心）',
+          '羽田 JAL 航空工廠見學商店（進廠前先買紀念品！）',
+          '唐吉訶德（張小寶凌晨採買專場）、秋葉原扭蛋會館'
+        ],
+        food: [
+          '浅草メンチ（現炸和牛豬肉餅）、花月堂大菠蘿麵包',
+          '利久牛舌（晴空塔 6F，13:30前快速午餐）',
+          '鴨 to 蔥（上野鴨肉拉麵）、牛かつもと村（炸牛排）'
+        ]
+      },
+      {
+        title: 'Day 2｜新宿・表參道・澀谷・六本木',
+        color: 'border-[#E5D8C8]',
+        shop: [
+          '🧸 Kiddy Land 原宿店（吉伊卡哇、拉拉熊、三麗鷗聖地）',
+          '表參道 Hills、Cat Street 貓街、@cosme TOKYO',
+          '澀谷 PARCO（任天堂旗艦店、寶可夢中心、JUMP SHOP）',
+          '六本木之丘聖誕市集（11:00–21:00 德國木屋市集）'
+        ],
+        food: [
+          'HARBS LUMINE EST 新宿店（水果千層蛋糕）',
+          'SWEET BOX（原宿竹下通可麗餅）、AFURI 柚子鹽拉麵',
+          '挽肉と米 / 極味屋（澀谷炭火漢堡排）'
+        ]
+      },
+      {
+        title: 'Day 3｜日本橋・銀座・橫濱',
+        color: 'border-[#DCD8E5]',
+        shop: [
+          '日本橋寶可夢東京店 DX（日本橋高島屋 S.C. 東館 5F）',
+          '銀座步行者天國（三麗鷗銀座店 / GU / UNIQLO / 無印良品）',
+          '橫濱寶可夢中心（MARUI CITY 8F）＋ 紅磚倉庫聖誕市集'
+        ],
+        food: [
+          '篝 Kagari（銀座雞白湯拉麵）、根室花丸迴轉壽司',
+          'Bills 橫濱紅磚倉庫店（限定莓果鬆餅）、勝烈庵炸豬排',
+          '吉村家（家系拉麵總本山）、橫濱中華街'
+        ]
+      },
+      {
+        title: 'Day 4 & 5｜鎌倉・江之島・富士山河口湖',
+        color: 'border-[#D8DEC3]',
+        shop: [
+          '鎌倉小町通（鎌倉半月法蘭酥、吉卜力橡子共和國）',
+          '河口湖站周邊（富士山吐司、FUJIYAMA COOKIE）'
+        ],
+        food: [
+          '鎌倉 Giraffa 咖哩麵包、鎌倉茶々濃抹茶冰、江之島吻仔魚丼',
+          '忍野八海草餅、河口湖站對面「不動茶屋」南瓜餺飥麵',
+          '大石公園巨峰葡萄霜淇淋（或 Lake Bake 咖啡）、新宿燒肉'
+        ]
+      }
+    ];
+
+    // ==============================
+    // 2. 本地儲存狀態管理
+    // ==============================
+    let checkedSteps = JSON.parse(localStorage.getItem('tokyo_checked_steps') || '{}');
+    let checkedFoods = JSON.parse(localStorage.getItem('tokyo_checked_foods') || '{}');
+    let proxyItems = JSON.parse(localStorage.getItem('tokyo_proxy_items') || '[]');
+    let currentDayFilter = '1';
+
+    // 記帳資料狀態
+    let exchangeRate = parseFloat(localStorage.getItem('tokyo_exchange_rate') || '0.215');
+    const defaultExpenses = [
+      { id: 'e1', day: '行前準備', title: '樂桃航空來回機票（2人）', amountJPY: 65000, category: '交通', payment: '信用卡', owner: '共同' },
+      { id: 'e2', day: 'Day 1 (11/27)', title: 'Skyliner 車票（成田→上野）', amountJPY: 5134, category: '交通', payment: '信用卡', owner: '共同' },
+      { id: 'e3', day: 'Day 1 (11/27)', title: '淺草 BEAMS 限定招財貓', amountJPY: 4400, category: '購物', payment: '信用卡', owner: '威寶' },
+      { id: 'e4', day: 'Day 1 (11/27)', title: '唐吉訶德代購藥妝零食', amountJPY: 12500, category: '代購', payment: '現金', owner: '代購' }
+    ];
+    let expenseRecords = JSON.parse(localStorage.getItem('tokyo_expense_records') || 'null') || defaultExpenses;
+
+    // ==============================
+    // 3. 分頁切換與行程渲染邏輯
+    // ==============================
+    function switchMainTab(tab) {
+      ['itinerary', 'shopping', 'expense'].forEach(t => {
+        document.getElementById(`page-${t}`).classList.toggle('hidden', t !== tab);
+        const btn = document.getElementById(`nav-${t}`);
+        if (t === tab) {
+          btn.classList.add('tab-active');
+          btn.classList.remove('text-morandi-cocoa');
+        } else {
+          btn.classList.remove('tab-active');
+          btn.classList.add('text-morandi-cocoa');
+        }
+      });
+      if (tab === 'expense') renderExpenseDashboard();
+    }
+
+    function selectDay(day) {
+      currentDayFilter = day;
+      ['ALL', '1', '2', '3', '4', '5', '6'].forEach(d => {
+        const btn = document.getElementById(`btn-day-${d}`);
+        if (!btn) return;
+        if (d === day) {
+          btn.classList.add('day-pill-active');
+        } else {
+          btn.classList.remove('day-pill-active');
+        }
+      });
+      renderItineraryCards();
+    }
+
+    function toggleStep(id) {
+      checkedSteps[id] = !checkedSteps[id];
+      localStorage.setItem('tokyo_checked_steps', JSON.stringify(checkedSteps));
+      renderItineraryCards();
+    }
+
+    function renderItineraryCards() {
+      const container = document.getElementById('itinerary-cards-container');
+      const list = currentDayFilter === 'ALL'
+        ? itineraryData
+        : itineraryData.filter(d => d.day === currentDayFilter);
+
+      container.innerHTML = list.map(d => `
+        <div class="bg-white rounded-3xl p-5 shadow-xs border border-[#E6CCB2]">
+          <div class="flex flex-wrap items-center gap-2 mb-2">
+            <span class="${d.badgeBg} ${d.badgeText} text-xs font-black px-3 py-1 rounded-full">Day ${d.day} • ${d.date}</span>
+            <h3 class="text-sm sm:text-base font-black text-morandi-plum">${d.title}</h3>
+          </div>
+          <div class="bg-[#FDF8F5] text-morandi-cocoa text-xs p-3 rounded-2xl border border-dashed border-[#E6CCB2] mb-3.5">
+            💡 <b>重點備忘：</b>${d.tip}
+          </div>
+          <div class="space-y-2">
+            ${d.steps.map(s => {
+              const done = !!checkedSteps[s.id];
+              return `
+                <div onclick="toggleStep('${s.id}')"
+                     class="cursor-pointer flex items-start gap-3 p-3 rounded-2xl border transition ${done ? 'bg-[#F9F7FA] border-[#DCD6DD]' : 'bg-white hover:bg-[#FDF8F5] border-[#E6CCB2]/70'}">
+                  <div class="mt-0.5 w-5 h-5 rounded-lg border-2 flex items-center justify-center shrink-0 text-xs font-black ${done ? 'bg-morandi-plum border-morandi-plum text-white' : 'border-[#D8A48F] text-transparent'}">✓</div>
+                  <div class="text-xs sm:text-sm ${done ? 'check-done' : ''}">
+                    <span class="inline-block font-extrabold text-morandi-rose mr-1.5">[${s.time}]</span>
+                    <span class="text-morandi-ink font-medium">${s.text}</span>
+                  </div>
+                </div>
+              `;
+            }).join('')}
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function renderEvents() {
+      const container = document.getElementById('events-container');
+      container.innerHTML = specialEvents.map(ev => `
+        <div class="bg-[#FDF8F5] p-3.5 rounded-2xl border border-[#E6CCB2] flex flex-col justify-between">
+          <div>
+            <div class="flex items-start justify-between gap-2">
+              <h3 class="font-black text-morandi-cocoa">${ev.name}</h3>
+              <span class="text-[10px] font-bold bg-white text-morandi-rose px-2 py-0.5 rounded-full border border-[#E5D1D0] shrink-0">${ev.date}</span>
+            </div>
+            <p class="text-morandi-ink mt-1.5 leading-relaxed">${ev.desc}</p>
+          </div>
+          ${ev.link ? `<a href="${ev.link}" target="_blank" rel="noopener" class="inline-block mt-2 text-morandi-plum font-extrabold underline">開啟官方／地圖連結 ↗</a>` : ''}
+        </div>
+      `).join('');
+    }
+
+    // ==============================
+    // 4. 購物與美食清單邏輯
+    // ==============================
+    function toggleFoodWish(item) {
+      checkedFoods[item] = !checkedFoods[item];
+      localStorage.setItem('tokyo_checked_foods', JSON.stringify(checkedFoods));
+      renderFoodWishes();
+    }
+
+    function renderFoodWishes() {
+      const grid = document.getElementById('food-wish-grid');
+      grid.innerHTML = foodWishes.map(item => {
+        const done = !!checkedFoods[item];
+        return `
+          <button onclick="toggleFoodWish('${item}')"
+            class="px-3.5 py-1.5 rounded-full text-xs font-extrabold border transition flex items-center gap-1 ${done ? 'bg-morandi-matcha text-white border-morandi-matcha' : 'bg-[#F9F8F3] text-morandi-cocoa border-[#DCD7C9] hover:border-morandi-matcha'}">
+            <span>${done ? '✅' : '🍴'}</span>
+            <span>${item}</span>
+          </button>
+        `;
+      }).join('');
+    }
+
+    function addProxyItem(e) {
+      e.preventDefault();
+      const input = document.getElementById('proxy-item-input');
+      const text = input.value.trim();
+      if (!text) return;
+      proxyItems.unshift({ id: 'p' + Date.now(), text, done: false });
+      localStorage.setItem('tokyo_proxy_items', JSON.stringify(proxyItems));
+      input.value = '';
+      renderProxyList();
+      showToast('已加入代購清單！');
+    }
+
+    function toggleProxyItem(id) {
+      proxyItems = proxyItems.map(p => p.id === id ? { ...p, done: !p.done } : p);
+      localStorage.setItem('tokyo_proxy_items', JSON.stringify(proxyItems));
+      renderProxyList();
+    }
+
+    function deleteProxyItem(id) {
+      proxyItems = proxyItems.filter(p => p.id !== id);
+      localStorage.setItem('tokyo_proxy_items', JSON.stringify(proxyItems));
+      renderProxyList();
+    }
+
+    function renderProxyList() {
+      const container = document.getElementById('proxy-list-container');
+      if (proxyItems.length === 0) {
+        container.innerHTML = `<p class="text-xs text-morandi-sage text-center py-3">目前還沒有代購項目，上方輸入即可隨時新增 ✨</p>`;
+        return;
+      }
+      container.innerHTML = proxyItems.map(p => `
+        <div class="flex items-center justify-between gap-2 bg-white px-3.5 py-2.5 rounded-2xl border border-[#E5D1D0]">
+          <button onclick="toggleProxyItem('${p.id}')" class="flex items-center gap-2.5 text-left flex-1">
+            <span class="w-5 h-5 rounded-lg border-2 flex items-center justify-center text-xs font-black ${p.done ? 'bg-morandi-rose border-morandi-rose text-white' : 'border-[#D8A48F] text-transparent'}">✓</span>
+            <span class="text-xs sm:text-sm font-bold text-morandi-cocoa ${p.done ? 'check-done' : ''}">${p.text}</span>
+          </button>
+          <button onclick="deleteProxyItem('${p.id}')" class="text-xs text-morandi-sage hover:text-morandi-rose px-2">✕</button>
+        </div>
+      `).join('');
+    }
+
+    function renderAreaGuides() {
+      const container = document.getElementById('area-guides-container');
+      container.innerHTML = areaGuides.map(g => `
+        <div class="bg-white rounded-3xl p-5 shadow-xs border ${g.color}">
+          <h3 class="text-sm sm:text-base font-black text-morandi-plum mb-3">${g.title}</h3>
+          <div class="space-y-3 text-xs">
+            <div class="bg-[#FDF8F5] p-3 rounded-2xl border border-[#E6CCB2]">
+              <p class="font-extrabold text-morandi-rose mb-1.5">🛒 想逛的 ＆ 買買</p>
+              <ul class="list-disc list-inside space-y-1 text-morandi-ink">
+                ${g.shop.map(s => `<li>${s}</li>`).join('')}
+              </ul>
+            </div>
+            <div class="bg-[#F9F8F3] p-3 rounded-2xl border border-[#DCD7C9]">
+              <p class="font-extrabold text-morandi-sage mb-1.5">🍽️ 要吃的美食</p>
+              <ul class="list-disc list-inside space-y-1 text-morandi-ink">
+                ${g.food.map(f => `<li>${f}</li>`).join('')}
+              </ul>
+            </div>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    // ==============================
+    // 5. 旅遊記帳本核心邏輯（全域掛載）
+    // ==============================
+    function formatNum(n) {
+      return Math.round(n).toLocaleString('zh-TW');
+    }
+
+    window.updateExchangeRate = function(val) {
+      const num = parseFloat(val);
+      if (!isNaN(num) && num > 0) {
+        exchangeRate = num;
+        localStorage.setItem('tokyo_exchange_rate', String(exchangeRate));
+        updateFormPreview();
+        renderExpenseDashboard();
+      }
+    };
+
+    window.quickCalc = function(source) {
+      const jpyEl = document.getElementById('quick-calc-jpy');
+      const twdEl = document.getElementById('quick-calc-twd');
+      if (source === 'jpy') {
+        const jpy = parseFloat(jpyEl.value);
+        twdEl.value = !isNaN(jpy) ? Math.round(jpy * exchangeRate) : '';
+      } else {
+        const twd = parseFloat(twdEl.value);
+        jpyEl.value = !isNaN(twd) ? Math.round(twd / exchangeRate) : '';
+      }
+    };
+
+    window.updateFormPreview = function() {
+      const curr = document.getElementById('exp-currency').value;
+      const amt = parseFloat(document.getElementById('exp-amount').value);
+      const preview = document.getElementById('exp-converted-preview');
+      if (isNaN(amt) || amt <= 0) {
+        preview.textContent = curr === 'JPY' ? '≈ NT$ 0' : '≈ ¥0';
+        return;
+      }
+      if (curr === 'JPY') {
+        preview.textContent = `≈ NT$ ${formatNum(amt * exchangeRate)}`;
+      } else {
+        preview.textContent = `≈ ¥${formatNum(amt / exchangeRate)}`;
+      }
+    };
+
+    window.autoToggleProxyOwner = function() {
+      const cat = document.getElementById('exp-category').value;
+      const owner = document.getElementById('exp-owner');
+      if (cat === '代購') {
+        owner.value = '代購';
+      }
+    };
+
+    window.addExpenseRecord = function(e) {
+      e.preventDefault();
+      const day = document.getElementById('exp-day').value;
+      const title = document.getElementById('exp-title').value.trim();
+      const curr = document.getElementById('exp-currency').value;
+      const amt = parseFloat(document.getElementById('exp-amount').value);
+      const category = document.getElementById('exp-category').value;
+      const payment = document.getElementById('exp-payment').value;
+      const owner = document.getElementById('exp-owner').value;
+
+      if (!title || isNaN(amt) || amt <= 0) return;
+
+      const amountJPY = curr === 'JPY' ? Math.round(amt) : Math.round(amt / exchangeRate);
+
+      expenseRecords.unshift({
+        id: 'exp_' + Date.now(),
+        day,
+        title,
+        amountJPY,
+        category,
+        payment,
+        owner
+      });
+
+      localStorage.setItem('tokyo_expense_records', JSON.stringify(expenseRecords));
+      document.getElementById('exp-title').value = '';
+      document.getElementById('exp-amount').value = '';
+      updateFormPreview();
+      renderExpenseDashboard();
+      showToast('✨ 已記下一筆新花費！');
+    };
+
+    window.deleteExpenseRecord = function(id) {
+      expenseRecords = expenseRecords.filter(r => r.id !== id);
+      localStorage.setItem('tokyo_expense_records', JSON.stringify(expenseRecords));
+      renderExpenseDashboard();
+      showToast('已刪除該筆紀錄');
+    };
+
+    window.resetSampleExpenses = function() {
+      expenseRecords = [...defaultExpenses];
+      localStorage.setItem('tokyo_expense_records', JSON.stringify(expenseRecords));
+      renderExpenseDashboard();
+      showToast('已重設為範例記帳資料');
+    };
+
     function renderExpenseDashboard() {
       const rateInput = document.getElementById('exchange-rate-input');
       if (rateInput) rateInput.value = exchangeRate;
@@ -205,22 +1045,22 @@
       const statsGrid = document.getElementById('expense-stats-grid');
       if (statsGrid) {
         statsGrid.innerHTML = `
-          <div class="bg-[#F9F7FA] rounded-3xl p-4 shadow-sm border border-[#DCD6DD]">
+          <div class="bg-[#F9F7FA] rounded-3xl p-4 shadow-xs border border-[#DCD6DD]">
             <p class="text-[11px] font-extrabold text-[#6D597A] mb-1">💜 總花費（含代購）</p>
             <p class="text-lg sm:text-xl font-black text-morandi-plum">¥${formatNum(totalJPY)}</p>
             <p class="text-xs font-bold text-morandi-sage mt-0.5">≈ NT$ ${formatNum(totalJPY * exchangeRate)}</p>
           </div>
-          <div class="bg-[#F9FBF4] rounded-3xl p-4 shadow-sm border border-[#D8DEC3]">
+          <div class="bg-[#F9FBF4] rounded-3xl p-4 shadow-xs border border-[#D8DEC3]">
             <p class="text-[11px] font-extrabold text-[#5B6B48] mb-1">🌿 個人自用花費</p>
             <p class="text-lg sm:text-xl font-black text-[#4A583A]">¥${formatNum(personalJPY)}</p>
             <p class="text-xs font-bold text-[#6B705C] mt-0.5">≈ NT$ ${formatNum(personalJPY * exchangeRate)}</p>
           </div>
-          <div class="bg-[#FDF6F6] rounded-3xl p-4 shadow-sm border border-[#E5D1D0]">
+          <div class="bg-[#FDF6F6] rounded-3xl p-4 shadow-xs border border-[#E5D1D0]">
             <p class="text-[11px] font-extrabold text-[#B56576] mb-1">🎀 親友代購墊付</p>
             <p class="text-lg sm:text-xl font-black text-[#B56576]">¥${formatNum(proxyJPY)}</p>
             <p class="text-xs font-bold text-[#9E5A68] mt-0.5">請款 NT$ ${formatNum(proxyJPY * exchangeRate)}</p>
           </div>
-          <div class="bg-[#FCF9F5] rounded-3xl p-4 shadow-sm border border-[#E5D8C8]">
+          <div class="bg-[#FCF9F5] rounded-3xl p-4 shadow-xs border border-[#E5D8C8]">
             <p class="text-[11px] font-extrabold text-[#9C6644] mb-1">🍪 現金 vs 刷卡/IC</p>
             <p class="text-sm font-black text-[#8A5A3C] mt-1">💴 現金 ¥${formatNum(cashJPY)}</p>
             <p class="text-xs font-bold text-morandi-cocoa mt-0.5">💳 非現金 ¥${formatNum(cardJPY)}</p>
@@ -231,7 +1071,7 @@
       renderExpenseList();
     }
 
-    function renderExpenseList() {
+    window.renderExpenseList = function() {
       const container = document.getElementById('expense-list-container');
       if (!container) return;
 
@@ -300,5 +1140,95 @@
           </div>
         `;
       }).join('');
+    };
+
+    window.copyExpenseReport = function() {
+      let totalJPY = 0;
+      let proxyJPY = 0;
+      const lines = ['🧸 Don don don 東京自由行記帳明細', `基準匯率：1 JPY = ${exchangeRate} TWD`, '------------------------'];
+      expenseRecords.forEach(r => {
+        totalJPY += r.amountJPY;
+        if (r.category === '代購' || r.owner === '代購') proxyJPY += r.amountJPY;
+        const twd = Math.round(r.amountJPY * exchangeRate);
+        lines.push(`[${r.day}] ${r.title}：¥${formatNum(r.amountJPY)} (約 NT$${formatNum(twd)}) - ${r.payment}/${r.owner}`);
+      });
+      lines.push('------------------------');
+      lines.push(`總花費：¥${formatNum(totalJPY)}（約 NT$${formatNum(totalJPY * exchangeRate)}）`);
+      lines.push(`個人花費：¥${formatNum(totalJPY - proxyJPY)}（約 NT$${formatNum((totalJPY - proxyJPY) * exchangeRate)}）`);
+      lines.push(`親友代購：¥${formatNum(proxyJPY)}（約 NT$${formatNum(proxyJPY * exchangeRate)}）`);
+
+      copyText(lines.join('\n'), '已複製完整記帳報表，可直接貼到 LINE！');
+    };
+
+    window.exportExpenseCSV = function() {
+      const headers = ['日期', '消費項目', '分類', '付款方式', '歸屬', '日圓金額(JPY)', '換算台幣(TWD)'];
+      const rows = expenseRecords.map(r => [
+        r.day,
+        `"${r.title.replace(/"/g, '""')}"`,
+        r.category,
+        r.payment,
+        r.owner,
+        r.amountJPY,
+        Math.round(r.amountJPY * exchangeRate)
+      ]);
+      const csvContent = '\uFEFF' + [headers.join(','), ...rows.map(e => e.join(','))].join('\n');
+      const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.setAttribute('href', url);
+      link.setAttribute('download', 'Don_don_don_東京旅遊記帳.csv');
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      showToast('已匯出 CSV 檔案！');
+    };
+
+    // ==============================
+    // 6. 共用輔助工具（剪貼簿與彈窗）
+    // ==============================
+    function copyText(text, customMsg) {
+      const textarea = document.createElement('textarea');
+      textarea.value = text;
+      textarea.style.position = 'fixed';
+      textarea.style.opacity = '0';
+      document.body.appendChild(textarea);
+      textarea.select();
+      try {
+        document.execCommand('copy');
+        showToast(customMsg || '已複製到剪貼簿！');
+      } catch (err) {
+        showToast('複製失敗，請手動選取');
+      }
+      document.body.removeChild(textarea);
     }
-<!-- ... existing code ... -->
+
+    function showToast(msg) {
+      const toast = document.getElementById('toast-box');
+      toast.textContent = msg;
+      toast.classList.remove('hidden');
+      clearTimeout(window._toastTimer);
+      window._toastTimer = setTimeout(() => {
+        toast.classList.add('hidden');
+      }, 2400);
+    }
+
+    function openTaxModal() {
+      document.getElementById('tax-modal').classList.remove('hidden');
+    }
+
+    function closeTaxModal() {
+      document.getElementById('tax-modal').classList.add('hidden');
+    }
+
+    // 初始化渲染
+    window.addEventListener('DOMContentLoaded', () => {
+      renderItineraryCards();
+      renderEvents();
+      renderFoodWishes();
+      renderProxyList();
+      renderAreaGuides();
+      renderExpenseDashboard();
+    });
+  </script>
+</body>
+</html>
